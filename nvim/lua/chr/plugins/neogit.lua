@@ -6,7 +6,7 @@ return {
     "nvim-telescope/telescope.nvim",
   },
   config = function()
-    local neogit = require("neogit")
-    neogit.setup()
+    local neovim = require("neogit")
+    neovim.setup({})
   end,
 }
