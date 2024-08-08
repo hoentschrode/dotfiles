@@ -25,6 +25,9 @@ return {
               arrow_open = "",
             },
           },
+          show = {
+            diagnostics = true,
+          },
         },
       },
       actions = {
@@ -32,6 +35,7 @@ return {
           window_picker = {
             enable = false,
           },
+          quit_on_open = true,
         },
       },
       filters = {
@@ -40,6 +44,17 @@ return {
       git = {
         enable = true,
         ignore = true,
+      },
+      diagnostics = {
+        enable = true,
+        show_on_dirs = true,
+        show_on_open_dirs = false,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        },
       },
     })
 

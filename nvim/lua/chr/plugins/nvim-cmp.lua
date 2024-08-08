@@ -25,7 +25,7 @@ return {
 
     cmp.setup({
       completion = {
-        completeopt = "menu,menuone,preview,noselect"
+        completeopt = "menu,menuone,preview,noselect",
       },
       snippet = {
         expand = function(args)
@@ -43,10 +43,11 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name ="nvim_lsp" },
+        { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
+        { name = "copilot" },
       }),
       -- TODO:
       -- configure lspkind for vscode like pictograms in completion menu
@@ -54,8 +55,9 @@ return {
         format = lspkind.cmp_format({
           maxwidth = 50,
           ellipsis_char = "...",
+          symbol_map = { Copilot = "" },
         }),
       },
     })
-  end
+  end,
 }
