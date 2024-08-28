@@ -17,6 +17,8 @@ return {
           package_uninstalled = "✗",
         },
       },
+      -- give local formatters higher priority
+      PATH = "append",
     })
 
     mason_lspconfig.setup({
