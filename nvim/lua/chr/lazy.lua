@@ -7,15 +7,15 @@ if not vim.loop.fs_stat(lazypath) then
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
-    lazypath
+    lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "chr.plugins" }, {import = "chr.plugins.lsp" } }, {
+require("lazy").setup({ { import = "chr.plugins" }, { import = "chr.plugins.lsp" }, { import = "chr.plugins.dap" } }, {
   checker = {
     enabled = true,
-    notify = false
+    notify = false,
   },
   change_detection = {
     notify = false,
