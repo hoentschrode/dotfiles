@@ -7,7 +7,7 @@ return {
     devcontainer.setup({})
 
     -- key mappings
-    keymap.set("n", "<leader>ds", ":DevcontainerStart<CR>", { desc = "Start devContainer" })
-    keymap.set("n", "<leader>da", ":DevcontainerAttach<CR>", { desc = "Attach to devContainer" })
+    keymap.set("n", "<leader>Ds", ":DevcontainerStart<CR>", { desc = "Start devContainer" })
+    keymap.set("n", "<leader>Da", ":DevcontainerAttach<CR>", { desc = "Attach to devContainer" })
   end,
 }
