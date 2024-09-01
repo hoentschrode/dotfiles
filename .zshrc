@@ -114,6 +114,8 @@ export NVM_DIR="$HOME/.nvm"
 # Homebrew
 export PATH=${PATH}:/opt/homebrew/bin
 
+export EDITOR=/opt/homebrew/bin/nvim
+
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
