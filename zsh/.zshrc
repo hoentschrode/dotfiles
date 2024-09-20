@@ -138,8 +138,6 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
   tmux attach -t default || tmux new -s default 
 fi
 
-export HTTPS_PROXY="http://U548230:B26a9moml12@prx-dcxlh-v01.sec.fra.dlh.de:8080" 
-
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   dir           # Current directory section
