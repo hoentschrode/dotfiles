@@ -128,7 +128,7 @@ export NVM_DIR="$HOME/.nvm"
 source <(ng completion script)
 
 # Homebrew
-export PATH=${PATH}:/opt/homebrew/bin
+export PATH=/opt/homebrew/bin:${PATH}:
 
 export EDITOR="nvim"
 
