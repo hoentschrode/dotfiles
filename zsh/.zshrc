@@ -132,8 +132,11 @@ export PATH=/opt/homebrew/bin:${PATH}:
 export EDITOR="nvim"
 export TERM="screen-256color"
 
+eval `ssh-agent`
+ssh-add ~/.ssh/christian.hoentsch-rode.id_rsa
+
 # TMux by default
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [-z "$container"]; then
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$container" ]; then
   tmux attach -t default || tmux new -s default 
 fi
 
