@@ -130,7 +130,7 @@ source <(ng completion script)
 export PATH=/opt/homebrew/bin:${PATH}:
 
 export EDITOR="nvim"
-
+export TERM="screen-256color"
 
 # TMux by default
 if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [-z "$container"]; then
