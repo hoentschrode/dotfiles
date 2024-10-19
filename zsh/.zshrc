@@ -114,8 +114,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias t="task"
 alias to="taskopen"
-
-#export PATH=${PATH}:/Users/U548230/Library/Python/3.9/bin
+alias vim="nvim"
 
 source $HOME/.sdkman/bin/sdkman-init.sh
 
@@ -134,7 +133,7 @@ export EDITOR="nvim"
 
 
 # TMux by default
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [-z "$container"]; then
   tmux attach -t default || tmux new -s default 
 fi
 
@@ -142,6 +141,7 @@ SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   dir           # Current directory section
   host          # Hostname section
+  venv
   git           # Git section (git_branch + git_status)
   hg            # Mercurial section (hg_branch  + hg_status)
   exec_time     # Execution time
