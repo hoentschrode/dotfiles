@@ -159,3 +159,8 @@ SPACESHIP_USER_SHOW=always
 SPACESHIP_PROMPT_ADD_NEWLINE=true
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
+
+if [ ! -z "$container" ]; then
+  # Add container indicator if inside one
+  SPACESHIP_CHAR_PREFIX="PODMAN"
+fi
