@@ -160,7 +160,12 @@ SPACESHIP_PROMPT_ADD_NEWLINE=true
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
+<<<<<<< HEAD
 if [ ! -z "$container" ]; then
   # Add container indicator if inside one
+=======
+# Add container indicator
+if [[ ! -z "$container" ]]; then
+>>>>>>> 8d460cc (feat(zsh): show ident tag when running in container env)
   SPACESHIP_CHAR_PREFIX="PODMAN"
 fi
