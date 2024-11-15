@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -71,6 +71,20 @@ ZSH_THEME="spaceship"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Check for desired zsh plugins
+if [[ ! -d ${ZSH}/custom/plugins/zsh-syntax-highlighting ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting $ZSH/custom/plugins/zsh-syntax-highlighting 
+fi
+if [[ ! -d ${ZSH}/custom/plugins/zsh-autosuggestions ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH/custom/plugins/zsh-autosuggestions
+fi
+if [[ ! -d ${ZSH}/custom/plugins/zsh-history-substring-search ]]; then
+  git clone https://github.com/zsh-users/zsh-history-substring-search $ZSH/custom/plugins/zsh-history-substring-search
+fi
+if [[ ! -d ${ZSH}/custom/plugins/zsh-completions ]]; then
+  git clone https://github.com/zsh-users/zsh-completions $ZSH/custom/plugins/zsh-completions
+fi
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -88,35 +102,18 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Check for powerlevel10k theme
+if [[ ! -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k ]]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias t="task"
 alias to="taskopen"
 alias vim="nvim"
 
-source $HOME/.sdkman/bin/sdkman-init.sh
+[ -e $HOME/.sdkman/bin/sdkman-init.sh ] && source $HOME/.sdkman/bin/sdkman-init.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -128,39 +125,24 @@ if [ -x "ng" ]; then
   source <(ng completion script)
 fi
 
-# Homebrew
+# Homebrew first
 export PATH=/opt/homebrew/bin:${PATH}:
 
 export EDITOR="nvim"
-export TERM="screen-256color"
 
-eval `ssh-agent`
-ssh-add ~/.ssh/christian.hoentsch-rode.id_rsa
+eval `ssh-agent` >/dev/null
+# List of SSH_KEYS to add to ssh-agent automatically
+SSH_KEYS=('~/.ssh/christian.hoentsch-rode.id_rsa', '~/.ssh/hoentsch-ro.de.4096.id_rsa')
+for key in $SSH_KEYS; do
+  if [[ -e "$key" ]]; then
+    ssh-add "$key"
+  fi
+done
 
 # TMux by default
 if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$container" ]; then
-  tmux attach -t default || tmux new -s default 
+  tmux attach -t default || tmux new -s default
 fi
 
-SPACESHIP_PROMPT_ORDER=(
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  venv
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  exec_time     # Execution time
-  line_sep      # Line break
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
-SPACESHIP_USER_SHOW=always
-SPACESHIP_PROMPT_ADD_NEWLINE=true
-SPACESHIP_CHAR_SYMBOL="❯"
-SPACESHIP_CHAR_SUFFIX=" "
-
-# Add container indicator
-if [[ ! -z "$container" ]]; then
-  SPACESHIP_CHAR_PREFIX="PODMAN"
-fi
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
