@@ -85,12 +85,17 @@ if [[ ! -d ${ZSH}/custom/plugins/zsh-completions ]]; then
   git clone https://github.com/zsh-users/zsh-completions $ZSH/custom/plugins/zsh-completions
 fi
 
+# Homebrew first
+export PATH=/opt/homebrew/bin:${PATH}:
+ZSH_TMUX_AUTOSTART=true
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  tmux
   git 
   zsh-syntax-highlighting
   zsh-autosuggestions
@@ -125,11 +130,8 @@ if [ -x "ng" ]; then
   source <(ng completion script)
 fi
 
-# Homebrew first
-export PATH=/opt/homebrew/bin:${PATH}:
 
 export EDITOR="nvim"
-
 eval `ssh-agent` >/dev/null
 # List of SSH_KEYS to add to ssh-agent automatically
 SSH_KEYS=('~/.ssh/christian.hoentsch-rode.id_rsa', '~/.ssh/hoentsch-ro.de.4096.id_rsa')
@@ -138,11 +140,6 @@ for key in $SSH_KEYS; do
     ssh-add "$key"
   fi
 done
-
-# TMux by default
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$container" ]; then
-  tmux attach -t default || tmux new -s default
-fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
