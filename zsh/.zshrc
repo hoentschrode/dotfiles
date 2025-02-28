@@ -87,6 +87,9 @@ fi
 
 # Homebrew first
 export PATH=/opt/homebrew/bin:${PATH}:
+# Fix weired homebrew location issues
+DYLD_LIBRARY_PATH+="$(brew --prefix)/lib"
+export DYLD_LIBRARY_PATH
 ZSH_TMUX_AUTOSTART=true
 
 # Which plugins would you like to load?
