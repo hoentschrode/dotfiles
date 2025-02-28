@@ -85,11 +85,15 @@ if [[ ! -d ${ZSH}/custom/plugins/zsh-completions ]]; then
   git clone https://github.com/zsh-users/zsh-completions $ZSH/custom/plugins/zsh-completions
 fi
 
-# Homebrew first
-export PATH=/opt/homebrew/bin:${PATH}:
-# Fix weired homebrew location issues
-DYLD_LIBRARY_PATH+="$(brew --prefix)/lib"
-export DYLD_LIBRARY_PATH
+if [ -x "brew" ]; then
+  # Homebrew first
+  export PATH=/opt/homebrew/bin:${PATH}:
+
+  # Fix weired homebrew location issues
+  DYLD_LIBRARY_PATH+="$(brew --prefix)/lib"
+  export DYLD_LIBRARY_PATH
+fi
+
 ZSH_TMUX_AUTOSTART=true
 
 # Which plugins would you like to load?
