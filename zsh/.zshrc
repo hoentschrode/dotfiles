@@ -85,7 +85,7 @@ if [[ ! -d ${ZSH}/custom/plugins/zsh-completions ]]; then
   git clone https://github.com/zsh-users/zsh-completions $ZSH/custom/plugins/zsh-completions
 fi
 
-if [ -x "brew" ]; then
+if [ -x "/opt/homebrew/bin/brew" ]; then
   # Homebrew first
   export PATH=/opt/homebrew/bin:${PATH}:
 
