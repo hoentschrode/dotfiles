@@ -148,5 +148,7 @@ for key in $SSH_KEYS; do
   fi
 done
 
+[ -d ~/go/bin ] && export PATH=${PATH}:~/go/bin
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
