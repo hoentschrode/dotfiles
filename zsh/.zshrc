@@ -149,6 +149,8 @@ for key in $SSH_KEYS; do
 done
 
 [ -d ~/go/bin ] && export PATH=${PATH}:~/go/bin
+[ -f "/Users/chr/.ghcup/env" ] && . "/Users/chr/.ghcup/env" # ghcup-env
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
